@@ -10,25 +10,26 @@ const projectData = [
   {
     title: "Crypto Tracking App",
     description: "Track real-time cryptocurrency prices and trends.",
-    image: cryptoImage,
+    image: "/assets/cr.png", // Updated path
     github: "https://github.com/KrishnaMore19/travel-app",
     live: "https://crypto-six-self.vercel.app/",
   },
   {
     title: "Weather App",
     description: "Get real-time weather data for any location.",
-    image: weatherImage,
+    image: "/assets/weather.png",
     github: "https://github.com/KrishnaMore19/weather-app",
     live: "https://weather-app-eight-delta-10.vercel.app/",
   },
   {
     title: "News App",
     description: "Stay updated with the latest news from around the world.",
-    image: newsImage,
+    image: "/assets/news.png",
     github: "https://github.com/KrishnaMore19/newsapp",
     live: "https://your-news-app-link.com",
   },
 ];
+
 const Projects = () => {
   return (
     <section id="projects" className="py-20 px-4 relative text-white">
