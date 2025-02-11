@@ -40,12 +40,11 @@ const Navbar = ({ activeSection, setActiveSection }) => {
 
   return (
     <motion.nav
-  className="fixed top-0 left-0 w-full z-50 bg-transparent backdrop-blur-lg shadow-lg"
-  initial={{ opacity: 0, y: -50 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6 }}
->
-
+      className="fixed top-0 left-0 w-full z-50 bg-transparent backdrop-blur-lg shadow-lg"
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+    >
       <StarsBackground /> {/* Starry effect in background */}
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 relative z-10">
@@ -84,34 +83,34 @@ const Navbar = ({ activeSection, setActiveSection }) => {
           </button>
         </div>
 
-        {/* Mobile Menu */}
-        <motion.div
-          className={`absolute top-16 left-0 w-full backdrop-blur-md bg-transparent md:hidden ${
-            isOpen ? "block" : "hidden"
-          }`}
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          <div className="flex flex-col space-y-4 py-4 items-center">
-            {["Home", "skills", "projects", "contact"].map((item) => (
-              <a
-                key={`mobile-${item}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(item);
-                  setActiveSection(item);
-                }}
-                href={`#${item}`}
-                className={`text-white text-lg font-medium hover:opacity-80 transition ${
-                  activeSection === item ? "underline" : ""
-                }`}
-              >
-                {item.charAt(0).toUpperCase() + item.slice(1)}
-              </a>
-            ))}
-          </div>
-        </motion.div>
+        {/* Mobile Menu - Card Style */}
+        {isOpen && (
+          <motion.div
+            className="absolute top-20 left-1/2 transform -translate-x-1/2 w-[90%] bg-gray-900 text-white rounded-lg shadow-xl p-5 md:hidden"
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="flex flex-col space-y-4 items-center">
+              {["Home", "skills", "projects", "contact"].map((item) => (
+                <a
+                  key={`mobile-${item}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(item);
+                    setActiveSection(item);
+                  }}
+                  href={`#${item}`}
+                  className={`text-white text-lg font-medium hover:opacity-80 transition ${
+                    activeSection === item ? "underline" : ""
+                  }`}
+                >
+                  {item.charAt(0).toUpperCase() + item.slice(1)}
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        )}
       </div>
     </motion.nav>
   );
