@@ -5,7 +5,6 @@ import Hero from "./components/Hero";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
-import StarsBackground from "./components/StarsBackground";
 
 const sections = [
   { id: "Home", Component: Hero },
@@ -61,8 +60,7 @@ function App() {
   }, []);
 
   return (
-    <div className="relative overflow-hidden">
-      <StarsBackground />
+    <div className="relative overflow-hidden bg-indigo-950">
       <Navbar 
         activeSection={activeSection} 
         setActiveSection={setActiveSection}
