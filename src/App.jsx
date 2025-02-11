@@ -15,19 +15,16 @@ const sections = [
 ];
 
 const sectionVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { 
+    opacity: 0, 
+    y: 20 
+  },
   visible: { 
     opacity: 1, 
     y: 0,
     transition: { 
-      duration: 0.5,
+      duration: 0.3,  // Reduced from 0.8
       ease: "easeOut"
-    }
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      duration: 0.3
     }
   }
 };
@@ -39,7 +36,7 @@ function App() {
 
   const observerOptions = useMemo(() => ({
     rootMargin: "-10% 0px",
-    threshold: [0, 0.1, 0.5, 1]
+    threshold: [0, 0.1]  // Reduced threshold array
   }), []);
 
   useEffect(() => {
@@ -50,13 +47,14 @@ function App() {
       setScrollDirection(currentScrollY > prevScrollY ? "down" : "up");
       prevScrollY = currentScrollY;
 
-      if (Math.abs(currentScrollY - lastScrollY) > 50) {
+      // Reduced threshold check
+      if (Math.abs(currentScrollY - lastScrollY) > 30) {
         const currentSection = sections.find(section => {
           const element = document.getElementById(section.id);
           if (!element) return false;
           
           const rect = element.getBoundingClientRect();
-          const threshold = window.innerHeight * 0.3; // Adjusted threshold
+          const threshold = window.innerHeight * 0.2;
           return rect.top >= -threshold && rect.top < threshold;
         });
 
@@ -82,23 +80,6 @@ function App() {
     return () => window.removeEventListener("scroll", scrollListener);
   }, [lastScrollY]);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    }, observerOptions);
-
-    sections.forEach(({ id }) => {
-      const element = document.getElementById(id);
-      if (element) observer.observe(element);
-    });
-
-    return () => observer.disconnect();
-  }, [observerOptions]);
-
   return (
     <div className="relative overflow-hidden">
       <StarsBackground />
@@ -108,30 +89,27 @@ function App() {
         scrollDirection={scrollDirection}
       />
 
-      <AnimatePresence mode="wait">
-        <div className="relative z-10 flex flex-col w-full">
-          {sections.map(({ id, Component }) => (
-            <motion.section
-              key={id}
-              id={id}
-              className="min-h-screen w-full relative snap-start"
-              variants={sectionVariants}
-              initial="hidden"
-              whileInView="visible"
-              exit="exit"
-              viewport={{ 
-                once: false, 
-                amount: 0.3,
-                margin: "0px"
-              }}
-            >
-              <div className="h-full w-full absolute top-0 left-0">
-                <Component />
-              </div>
-            </motion.section>
-          ))}
-        </div>
-      </AnimatePresence>
+      <div className="relative z-10 flex flex-col w-full">
+        {sections.map(({ id, Component }) => (
+          <motion.section
+            key={id}
+            id={id}
+            className="min-h-screen w-full relative"
+            variants={sectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ 
+              once: false, 
+              amount: 0.1,  // Reduced from 0.2
+              margin: "0px"
+            }}
+          >
+            <div className="h-full w-full">
+              <Component />
+            </div>
+          </motion.section>
+        ))}
+      </div>
     </div>
   );
 }
