@@ -15,20 +15,19 @@ const sections = [
 ];
 
 const sectionVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
     y: 0,
     transition: { 
-      duration: 0.8,
+      duration: 0.5,
       ease: "easeOut"
     }
   },
   exit: {
     opacity: 0,
-    y: -50,
     transition: {
-      duration: 0.4
+      duration: 0.3
     }
   }
 };
@@ -38,10 +37,9 @@ function App() {
   const [scrollDirection, setScrollDirection] = useState("down");
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Memoized intersection observer options
   const observerOptions = useMemo(() => ({
-    rootMargin: "-50% 0px",
-    threshold: [0, 0.5, 1]
+    rootMargin: "-10% 0px",
+    threshold: [0, 0.1, 0.5, 1]
   }), []);
 
   useEffect(() => {
@@ -52,14 +50,14 @@ function App() {
       setScrollDirection(currentScrollY > prevScrollY ? "down" : "up");
       prevScrollY = currentScrollY;
 
-      // Debounced section detection
       if (Math.abs(currentScrollY - lastScrollY) > 50) {
         const currentSection = sections.find(section => {
           const element = document.getElementById(section.id);
           if (!element) return false;
           
           const rect = element.getBoundingClientRect();
-          return rect.top >= -window.innerHeight / 2 && rect.top < window.innerHeight / 2;
+          const threshold = window.innerHeight * 0.3; // Adjusted threshold
+          return rect.top >= -threshold && rect.top < threshold;
         });
 
         if (currentSection) {
@@ -69,7 +67,6 @@ function App() {
       }
     };
 
-    // Optimized scroll listener with requestAnimationFrame
     let ticking = false;
     const scrollListener = () => {
       if (!ticking) {
@@ -85,7 +82,6 @@ function App() {
     return () => window.removeEventListener("scroll", scrollListener);
   }, [lastScrollY]);
 
-  // Intersection Observer setup
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -104,7 +100,7 @@ function App() {
   }, [observerOptions]);
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="relative overflow-hidden">
       <StarsBackground />
       <Navbar 
         activeSection={activeSection} 
@@ -118,18 +114,18 @@ function App() {
             <motion.section
               key={id}
               id={id}
-              className="min-h-screen relative"
+              className="min-h-screen w-full relative snap-start"
               variants={sectionVariants}
               initial="hidden"
               whileInView="visible"
               exit="exit"
               viewport={{ 
                 once: false, 
-                amount: 0.2,
-                margin: "-100px"
+                amount: 0.3,
+                margin: "0px"
               }}
             >
-              <div className="h-full w-full">
+              <div className="h-full w-full absolute top-0 left-0">
                 <Component />
               </div>
             </motion.section>
