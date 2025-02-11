@@ -1,5 +1,5 @@
-import { useState, useEffect, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useMemo, useRef } from "react";
+import { motion } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Skills from "./components/Skills";
@@ -15,70 +15,50 @@ const sections = [
 ];
 
 const sectionVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 20 
-  },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { 
-      duration: 0.3,  // Reduced from 0.8
-      ease: "easeOut"
-    }
-  }
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } }
 };
 
 function App() {
   const [activeSection, setActiveSection] = useState("Home");
   const [scrollDirection, setScrollDirection] = useState("down");
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollY = useRef(0);
 
   const observerOptions = useMemo(() => ({
     rootMargin: "-10% 0px",
-    threshold: [0, 0.1]  // Reduced threshold array
+    threshold: [0, 0.1]
   }), []);
 
-  useEffect(() => {
-    let prevScrollY = window.scrollY;
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    setScrollDirection(currentScrollY > lastScrollY.current ? "down" : "up");
     
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setScrollDirection(currentScrollY > prevScrollY ? "down" : "up");
-      prevScrollY = currentScrollY;
+    if (Math.abs(currentScrollY - lastScrollY.current) > 30) {
+      const currentSection = sections.find(section => {
+        const element = document.getElementById(section.id);
+        if (!element) return false;
 
-      // Reduced threshold check
-      if (Math.abs(currentScrollY - lastScrollY) > 30) {
-        const currentSection = sections.find(section => {
-          const element = document.getElementById(section.id);
-          if (!element) return false;
-          
-          const rect = element.getBoundingClientRect();
-          const threshold = window.innerHeight * 0.2;
-          return rect.top >= -threshold && rect.top < threshold;
-        });
+        const rect = element.getBoundingClientRect();
+        const threshold = window.innerHeight * 0.2;
+        return rect.top >= -threshold && rect.top < threshold;
+      });
 
-        if (currentSection) {
-          setActiveSection(currentSection.id);
-          setLastScrollY(currentScrollY);
-        }
+      if (currentSection) {
+        setActiveSection(currentSection.id);
+        lastScrollY.current = currentScrollY;
       }
+    }
+  };
+
+  useEffect(() => {
+    const debouncedScroll = () => {
+      clearTimeout(window.scrollTimeout);
+      window.scrollTimeout = setTimeout(handleScroll, 100);
     };
 
-    let ticking = false;
-    const scrollListener = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          handleScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener("scroll", scrollListener, { passive: true });
-    return () => window.removeEventListener("scroll", scrollListener);
-  }, [lastScrollY]);
+    window.addEventListener("scroll", debouncedScroll, { passive: true });
+    return () => window.removeEventListener("scroll", debouncedScroll);
+  }, []);
 
   return (
     <div className="relative overflow-hidden">
@@ -98,11 +78,7 @@ function App() {
             variants={sectionVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ 
-              once: false, 
-              amount: 0.1,  // Reduced from 0.2
-              margin: "0px"
-            }}
+            viewport={{ once: false, amount: 0.1, margin: "0px" }}
           >
             <div className="h-full w-full">
               <Component />
