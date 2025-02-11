@@ -57,33 +57,34 @@ const Skills = () => {
 
         {/* Skills Grid - Ensure Animation on Category Change */}
         <motion.div
-          key={activeCategory}  // This forces a re-render on category change
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6 px-2 md:px-4"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: { opacity: 0 },
-            visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
-          }}
-        >
-          {skillCategories[activeCategory].map((skill, index) => (
-            <motion.div
-              key={skill}
-              variants={{
-                hidden: { opacity: 0, y: 50 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: index * 0.1 } },
-              }}
-              className="relative group"
-            >
-              <div className="relative p-4 md:p-6 rounded-xl border border-gray-700 bg-gray-900/90 
-                backdrop-blur-xl shadow-lg transition-all duration-300">
-                <div className="relative flex items-center justify-center h-20 md:h-24 w-full rounded-xl bg-gray-800/50">
-                  <h3 className="text-sm md:text-lg font-semibold text-gray-200">{skill}</h3>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+  className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6 px-2 md:px-4"
+  initial="hidden"
+  animate="visible"
+  exit="hidden" // Optional for smoother transition
+  variants={{
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+  }}
+>
+  {skillCategories[activeCategory].map((skill, index) => (
+    <motion.div
+      key={skill} // Keep this key only for list mapping
+      variants={{
+        hidden: { opacity: 0, y: 50 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: index * 0.1 } },
+      }}
+      className="relative group"
+    >
+      <div className="relative p-4 md:p-6 rounded-xl border border-gray-700 bg-gray-900/90 
+        backdrop-blur-xl shadow-lg transition-all duration-300">
+        <div className="relative flex items-center justify-center h-20 md:h-24 w-full rounded-xl bg-gray-800/50">
+          <h3 className="text-sm md:text-lg font-semibold text-gray-200">{skill}</h3>
+        </div>
+      </div>
+    </motion.div>
+  ))}
+</motion.div>
+
       </div>
     </section>
   );

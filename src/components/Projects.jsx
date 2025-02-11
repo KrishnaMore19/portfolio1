@@ -2,33 +2,32 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import StarsBackground from "./StarsBackground";
-import cryptoImage from "../assets/cr.png";
-import weatherImage from "../assets/weather.png";
-import newsImage from "../assets/news.png";
+
 
 const projectData = [
   {
     title: "Crypto Tracking App",
     description: "Track real-time cryptocurrency prices and trends.",
-    image: "/assets/cr.png", // Updated path
+    image: "/Cr.png",  // Correct path for images in public folder
     github: "https://github.com/KrishnaMore19/travel-app",
     live: "https://crypto-six-self.vercel.app/",
   },
   {
     title: "Weather App",
     description: "Get real-time weather data for any location.",
-    image: "/assets/weather.png",
+    image: "/weather.png",
     github: "https://github.com/KrishnaMore19/weather-app",
     live: "https://weather-app-eight-delta-10.vercel.app/",
   },
   {
     title: "News App",
     description: "Stay updated with the latest news from around the world.",
-    image: "/assets/news.png",
+    image: "/news.png",
     github: "https://github.com/KrishnaMore19/newsapp",
     live: "https://your-news-app-link.com",
   },
 ];
+
 
 const Projects = () => {
   return (
