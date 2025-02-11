@@ -4,6 +4,11 @@ import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from "react-icons/f
 import StarsBackground from "./StarsBackground";
 import emailjs from "@emailjs/browser";
 
+const contactVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+};
+
 const Contact = () => {
   const form = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -35,29 +40,44 @@ const Contact = () => {
   };
 
   const contactInfo = [
-    { icon: <FaEnvelope className="w-6 h-6" />, text: "krishna.more8200@gmail.com", delay: 0.1 },
-    { icon: <FaPhone className="w-6 h-6" />, text: "+91 8200640037", delay: 0.2 },
-    { icon: <FaMapMarkerAlt className="w-6 h-6" />, text: "Ahmedabad, Gujarat", delay: 0.3 }
+    { icon: <FaEnvelope className="w-6 h-6" />, text: "krishna.more8200@gmail.com" },
+    { icon: <FaPhone className="w-6 h-6" />, text: "+91 8200640037" },
+    { icon: <FaMapMarkerAlt className="w-6 h-6" />, text: "Ahmedabad, Gujarat" }
   ];
 
   return (
     <section className="relative min-h-screen bg-gradient-to-b from-black via-gray-900 to-black py-20">
       <StarsBackground />
       <div className="relative container mx-auto px-4">
-        <motion.div initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-16">
+        
+        <motion.div 
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: false, amount: 0.2 }} 
+          variants={contactVariants} 
+          className="text-center mb-16"
+        >
           <h2 className="text-5xl font-bold mb-4 text-white">Get In Touch</h2>
           <p className="text-xl text-gray-400">Let's create something amazing together</p>
         </motion.div>
 
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12">
+          
           {/* Contact Info */}
-          <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} className="space-y-8">
+          <motion.div 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: false, amount: 0.2 }} 
+            variants={contactVariants} 
+            className="space-y-8"
+          >
             {contactInfo.map((info, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: info.delay }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.2 }}
+                variants={contactVariants}
                 className="flex items-center space-x-4 text-gray-300"
               >
                 <div className="w-12 h-12 bg-indigo-600/20 rounded-lg flex items-center justify-center text-indigo-500">
@@ -69,19 +89,21 @@ const Contact = () => {
           </motion.div>
 
           {/* Contact Form */}
-          <motion.form ref={form} initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} onSubmit={handleSubmit} className="space-y-6">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-              <input type="text" name="name" placeholder="Your Name" className="w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:border-indigo-500 text-white" required />
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-              <input type="email" name="email" placeholder="Your Email" className="w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:border-indigo-500 text-white" required />
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
-              <textarea name="message" placeholder="Your Message" rows={5} className="w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:border-indigo-500 text-white resize-none" required />
-            </motion.div>
-
+          <motion.form 
+            ref={form} 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: false, amount: 0.2 }} 
+            variants={contactVariants} 
+            onSubmit={handleSubmit} 
+            className="space-y-6"
+          >
+            <input type="text" name="name" placeholder="Your Name" className="w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:border-indigo-500 text-white" required />
+            
+            <input type="email" name="email" placeholder="Your Email" className="w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:border-indigo-500 text-white" required />
+            
+            <textarea name="message" placeholder="Your Message" rows={5} className="w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:border-indigo-500 text-white resize-none" required />
+            
             <motion.button
               type="submit"
               whileHover={{ scale: 1.02 }}

@@ -13,26 +13,31 @@ const textVariants = {
 };
 
 const Hero = () => {
-  const words = ["Hi,", "I'm", "Krishna", "More", "🚀"];
+  const words = ["Hi,", "I'm", "KRISHNA", "MORE"];
 
   return (
-    <section
+    <motion.section
       id="Home"
-      className="min-h-screen flex flex-col lg:flex-row items-center justify-center text-white px-5 sm:px-10 md:px-16 lg:px-24 relative z-10"
+      className="min-h-screen flex flex-col-reverse sm:flex-row items-center justify-center text-white px-4 sm:px-8 md:px-12 lg:px-20 relative z-10"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.3 }}
+      transition={{ duration: 1, ease: "easeOut" }}
     >
       {/* Starry Background */}
       <StarsBackground />
 
       {/* Left Side - Text Content */}
-      <div className="lg:w-1/2 text-center lg:text-left z-10">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 flex flex-wrap justify-center lg:justify-start">
+      <div className="sm:w-1/2 text-center sm:text-left z-10">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 flex flex-wrap justify-center sm:justify-start inline-flex whitespace-nowrap">
           {words.map((word, i) => (
             <motion.span
               key={i}
               className="mr-2"
               variants={textVariants}
               initial="hidden"
-              animate="visible"
+              whileInView="visible"
+              viewport={{ once: true }}
               custom={i}
             >
               {word}
@@ -42,7 +47,8 @@ const Hero = () => {
         <motion.p
           className="text-lg sm:text-xl mb-3 sm:mb-4"
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         >
           Web Developer | Frontend Enthusiast
@@ -50,7 +56,8 @@ const Hero = () => {
         <motion.p
           className="text-sm sm:text-base md:text-lg mb-4 sm:mb-6 opacity-80"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.4 }}
         >
           Passionate about building interactive and dynamic web experiences with
@@ -59,16 +66,17 @@ const Hero = () => {
 
         {/* Social Links */}
         <motion.div
-          className="flex justify-center lg:justify-start space-x-4 mb-5 sm:mb-6"
+          className="flex justify-center sm:justify-start space-x-4 mb-5 sm:mb-6"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.6 }}
         >
           <a
             href="https://github.com/KrishnaMore19"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white text-xl sm:text-2xl hover:text-purple-500"
+            className="text-white text-xl sm:text-2xl hover:text-purple-400"
             aria-label="GitHub"
           >
             <FaGithub />
@@ -77,7 +85,7 @@ const Hero = () => {
             href="https://www.linkedin.com/in/krishnamore19/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white text-xl sm:text-2xl hover:text-blue-500"
+            className="text-white text-xl sm:text-2xl hover:text-blue-400"
             aria-label="LinkedIn"
           >
             <FaLinkedin />
@@ -86,7 +94,7 @@ const Hero = () => {
             href="https://www.instagram.com/krishnamore1908/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white text-xl sm:text-2xl hover:text-pink-500"
+            className="text-white text-xl sm:text-2xl hover:text-pink-400"
             aria-label="Instagram"
           >
             <FaInstagram />
@@ -94,12 +102,12 @@ const Hero = () => {
         </motion.div>
 
         {/* Buttons */}
-        <motion.div className="flex flex-wrap justify-center lg:justify-start space-x-4 mt-4 sm:mt-6">
+        <motion.div className="flex flex-wrap justify-center sm:justify-start space-x-4 mt-4 sm:mt-6">
           {/* Contact Me Button */}
           <motion.a
             href="#contact"
             aria-label="Contact Krishna More"
-            className="bg-purple-600 hover:bg-purple-800 text-white py-2 sm:py-3 px-5 sm:px-6 rounded-lg text-base sm:text-lg font-medium inline-block"
+            className="bg-purple-500 hover:bg-purple-700 text-white py-2 sm:py-3 px-5 sm:px-6 rounded-lg text-base sm:text-lg font-medium inline-block shadow-lg"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -112,7 +120,7 @@ const Hero = () => {
             download="Krishna_More_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className= "bg-purple-600 hover:bg-purple-800 text-white py-2 sm:py-3 px-5 sm:px-6 rounded-lg text-base sm:text-lg font-medium inline-block"
+            className="bg-purple-500 hover:bg-purple-700 text-white py-2 sm:py-3 px-5 sm:px-6 rounded-lg text-base sm:text-lg font-medium inline-block shadow-lg"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -123,7 +131,7 @@ const Hero = () => {
 
       {/* Right Side - Floating Astronaut Image */}
       <motion.div
-        className="lg:w-1/2 flex justify-center mt-8 lg:mt-0 z-10"
+        className="sm:w-1/2 flex justify-center mt-6 sm:mt-0 z-10"
         initial={{ y: 10 }}
         animate={{ y: -10 }}
         transition={{
@@ -133,9 +141,9 @@ const Hero = () => {
           ease: "easeInOut",
         }}
       >
-        <img src={headerImg} alt="Astronaut" className="w-64 sm:w-72 md:w-80 lg:w-96 max-w-full" />
+        <img src={headerImg} alt="Astronaut" className="w-56 sm:w-64 md:w-72 lg:w-80 max-w-full" />
       </motion.div>
-    </section>
+    </motion.section>
   );
 };
 

@@ -40,11 +40,12 @@ const Navbar = ({ activeSection, setActiveSection }) => {
 
   return (
     <motion.nav
-      className="fixed top-0 left-0 w-full z-50 bg-transparent backdrop-blur-lg"
-      initial={{ opacity: 0, y: -50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
+  className="fixed top-0 left-0 w-full z-50 bg-transparent backdrop-blur-lg shadow-lg"
+  initial={{ opacity: 0, y: -50 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+>
+
       <StarsBackground /> {/* Starry effect in background */}
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 relative z-10">

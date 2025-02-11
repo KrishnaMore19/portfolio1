@@ -36,20 +36,49 @@ function App() {
     <>
       <StarsBackground />
       <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
-      <div className="flex flex-col w-full">
-        <motion.div id="Home" className="min-h-screen" whileInView={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 0.8 }}>
+
+      <div className="relative z-10 flex flex-col w-full">
+        <motion.div
+          id="Home"
+          className="min-h-screen"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: false, amount: 0.2 }}
+        >
           <Hero />
         </motion.div>
 
-        <motion.div id="skills" className="min-h-screen" whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 50 }} transition={{ duration: 0.8 }}>
+        <motion.div
+          id="skills"
+          className="min-h-screen"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: false, amount: 0.2 }}
+        >
           <Skills />
         </motion.div>
 
-        <motion.div id="projects" className="min-h-screen" whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 50 }} transition={{ duration: 0.8 }}>
+        <motion.div
+          id="projects"
+          className="min-h-screen"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: false, amount: 0.2 }}
+        >
           <Projects />
         </motion.div>
 
-        <motion.div id="contact" className="min-h-screen" whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 50 }} transition={{ duration: 0.8 }}>
+        <motion.div
+          id="contact"
+          className="min-h-screen"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: false, amount: 0.2 }}
+        >
           <Contact />
         </motion.div>
       </div>
@@ -58,3 +87,4 @@ function App() {
 }
 
 export default App;
+

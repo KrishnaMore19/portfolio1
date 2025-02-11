@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import StarsBackground from "./StarsBackground"; // Correct import
+import StarsBackground from "./StarsBackground";
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState("Frontend");
@@ -21,6 +21,7 @@ const Skills = () => {
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">Technical Skills</h2>
@@ -41,54 +42,37 @@ const Skills = () => {
               aria-label={`Show ${category} skills`}
             >
               {category}
-              {activeCategory === category && (
-                <motion.span
-                  className="absolute inset-0 rounded-full border-2 border-indigo-500 animate-pulse"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
-                />
-              )}
             </motion.button>
           ))}
         </div>
 
-        {/* Skills Display */}
-        <div className="relative">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6 px-2 md:px-4">
-            {skillCategories[activeCategory].map((skill) => (
-              <motion.div
-                key={skill}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3 }}
-                className="relative group"
-              >
-                <motion.div
-                  className="relative p-4 md:p-6 rounded-xl border border-gray-700 bg-gray-900/90 
-                  backdrop-blur-xl shadow-lg transition-all duration-300 group-hover:shadow-indigo-500/40"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  {/* Background shine effect for mobile as well */}
-                  <motion.div
-                    className="absolute inset-0 rounded-xl bg-indigo-500/10 opacity-0 
-                    group-hover:opacity-100 transition-opacity duration-300 blur-md"
-                    whileTap={{ opacity: 1 }}
-                  />
-
-                  <motion.div
-                    className="relative flex items-center justify-center h-20 md:h-24 w-full rounded-xl bg-gray-800/50 
-                    group-hover:bg-indigo-600/20 transition-colors duration-300"
-                  >
-                    <h3 className="text-sm md:text-lg font-semibold text-gray-200">{skill}</h3>
-                  </motion.div>
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
+        {/* Scrollable Skills Animation */}
+        <motion.div
+  className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6 px-2 md:px-4"
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: false, amount: 0.5 }} // Adjusted for better visibility
+  transition={{ staggerChildren: 0.2 }} // Slower stagger for better effect
+>
+  {skillCategories[activeCategory].map((skill, index) => (
+    <motion.div
+      key={skill}
+      variants={{
+        hidden: { opacity: 0, y: 50 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: index * 0.15 } }
+      }}
+      className="relative group"
+    >
+      <div className="relative p-4 md:p-6 rounded-xl border border-gray-700 bg-gray-900/90 
+        backdrop-blur-xl shadow-lg transition-all duration-300">
+        <div className="relative flex items-center justify-center h-20 md:h-24 w-full rounded-xl bg-gray-800/50">
+          <h3 className="text-sm md:text-lg font-semibold text-gray-200">{skill}</h3>
         </div>
+      </div>
+    </motion.div>
+  ))}
+</motion.div>
+
       </div>
     </section>
   );
