@@ -2,31 +2,33 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import StarsBackground from "./StarsBackground";
+import cryptoImage from "../assets/cr.png";
+import weatherImage from "../assets/weather.png";
+import newsImage from "../assets/news.png";
 
 const projectData = [
   {
     title: "Crypto Tracking App",
     description: "Track real-time cryptocurrency prices and trends.",
-    image: "/src/assets/cr.png",
+    image: cryptoImage,
     github: "https://github.com/KrishnaMore19/travel-app",
     live: "https://crypto-six-self.vercel.app/",
   },
   {
     title: "Weather App",
     description: "Get real-time weather data for any location.",
-    image: "/src/assets/weather.png",
+    image: weatherImage,
     github: "https://github.com/KrishnaMore19/weather-app",
     live: "https://weather-app-eight-delta-10.vercel.app/",
   },
   {
     title: "News App",
     description: "Stay updated with the latest news from around the world.",
-    image: "/src/assets/news.png",
+    image: newsImage,
     github: "https://github.com/KrishnaMore19/newsapp",
     live: "https://your-news-app-link.com",
   },
 ];
-
 const Projects = () => {
   return (
     <section id="projects" className="py-20 px-4 relative text-white">

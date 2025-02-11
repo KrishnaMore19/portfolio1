@@ -32,16 +32,16 @@ const Hero = () => {
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 flex flex-wrap justify-center sm:justify-start inline-flex whitespace-nowrap">
           {words.map((word, i) => (
             <motion.span
-              key={i}
-              className="mr-2"
-              variants={textVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              custom={i}
-            >
-              {word}
-            </motion.span>
+            key={i}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold"
+            variants={textVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            custom={i}
+          >
+            {word}
+          </motion.span>
           ))}
         </h1>
         <motion.p
