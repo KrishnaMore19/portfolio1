@@ -13,8 +13,6 @@ const textVariants = {
 };
 
 const Hero = () => {
-  const words = ["Hi,", "I'm", "KRISHNA", "MORE"];
-
   return (
     <motion.section
       id="Home"
@@ -29,21 +27,21 @@ const Hero = () => {
 
       {/* Left Side - Text Content */}
       <div className="sm:w-1/2 text-center sm:text-left z-10">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 flex flex-wrap justify-center sm:justify-start inline-flex whitespace-nowrap">
-          {words.map((word, i) => (
-            <motion.span
-            key={i}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold"
-            variants={textVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            custom={i}
-          >
-            {word}
+        <motion.div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 flex flex-wrap justify-center sm:justify-start">
+          <motion.span variants={textVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0}>
+            Hi,
           </motion.span>
-          ))}
-        </h1>
+          <motion.span className="ml-2" variants={textVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={1}>
+            I'm
+          </motion.span>
+          <motion.span className="ml-2 text-purple-400" variants={textVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={2}>
+            Krishna
+          </motion.span>
+          <motion.span className="ml-2 text-purple-400" variants={textVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={3}>
+            More 🚀
+          </motion.span>
+        </motion.div>
+
         <motion.p
           className="text-lg sm:text-xl mb-3 sm:mb-4"
           initial={{ opacity: 0, y: 30 }}
@@ -60,8 +58,7 @@ const Hero = () => {
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.4 }}
         >
-          Passionate about building interactive and dynamic web experiences with
-          modern technologies like React.js, Tailwind CSS, and more.
+          Passionate about building interactive and dynamic web experiences with modern technologies like React.js, Tailwind CSS, and more.
         </motion.p>
 
         {/* Social Links */}
@@ -72,31 +69,13 @@ const Hero = () => {
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.6 }}
         >
-          <a
-            href="https://github.com/KrishnaMore19"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white text-xl sm:text-2xl hover:text-purple-400"
-            aria-label="GitHub"
-          >
+          <a href="https://github.com/KrishnaMore19" target="_blank" rel="noopener noreferrer" className="text-white text-xl sm:text-2xl hover:text-purple-400" aria-label="GitHub">
             <FaGithub />
           </a>
-          <a
-            href="https://www.linkedin.com/in/krishnamore19/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white text-xl sm:text-2xl hover:text-blue-400"
-            aria-label="LinkedIn"
-          >
+          <a href="https://www.linkedin.com/in/krishnamore19/" target="_blank" rel="noopener noreferrer" className="text-white text-xl sm:text-2xl hover:text-blue-400" aria-label="LinkedIn">
             <FaLinkedin />
           </a>
-          <a
-            href="https://www.instagram.com/krishnamore1908/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white text-xl sm:text-2xl hover:text-pink-400"
-            aria-label="Instagram"
-          >
+          <a href="https://www.instagram.com/krishnamore1908/" target="_blank" rel="noopener noreferrer" className="text-white text-xl sm:text-2xl hover:text-pink-400" aria-label="Instagram">
             <FaInstagram />
           </a>
         </motion.div>
