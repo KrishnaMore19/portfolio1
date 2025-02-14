@@ -1,14 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
-import StarsBackground from "./StarsBackground";
-
 
 const projectData = [
   {
     title: "Crypto Tracking App",
     description: "Track real-time cryptocurrency prices and trends.",
-    image: "/Cr.png",  // Correct path for images in public folder
+    image: "/Cr.png",
     github: "https://github.com/KrishnaMore19/travel-app",
     live: "https://crypto-six-self.vercel.app/",
   },
@@ -28,14 +26,9 @@ const projectData = [
   },
 ];
 
-
 const Projects = () => {
   return (
-    <section id="projects" className="py-20 px-4 relative text-white">
-      <div className="absolute inset-0 z-0">
-        <StarsBackground />
-      </div>
-
+    <section id="projects" className="py-20 px-4 relative text-white bg-indigo-950">
       <div className="container mx-auto text-center relative z-10">
         <motion.h2
           className="text-4xl font-semibold mb-12"
@@ -51,7 +44,7 @@ const Projects = () => {
           {projectData.map((project, index) => (
             <motion.div
               key={index}
-              className="bg-[#3a0d63] p-5 rounded-lg shadow-lg w-full h-72 flex flex-col justify-between overflow-hidden"
+              className="bg-[#1a1f2b] p-5 rounded-lg shadow-lg w-full h-72 flex flex-col justify-between overflow-hidden"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.2 }}
@@ -69,7 +62,7 @@ const Projects = () => {
               />
 
               <h3 className="text-lg font-bold">{project.title}</h3>
-              <p className="text-sm">{project.description}</p>
+              <p className="text-sm text-gray-300">{project.description}</p>
               <div className="flex justify-between mt-3">
                 <a
                   href={project.github}

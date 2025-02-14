@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import headerImg from "../assets/header-img.svg";
-import StarsBackground from "./StarsBackground";
 
 const textVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -16,15 +15,12 @@ const Hero = () => {
   return (
     <motion.section
       id="Home"
-      className="min-h-screen flex flex-col-reverse sm:flex-row items-center justify-center text-white px-4 sm:px-8 md:px-12 lg:px-20 relative z-10"
+      className="min-h-screen flex flex-col-reverse sm:flex-row items-center justify-center text-white px-4 sm:px-8 md:px-12 lg:px-20 relative z-10 bg-indigo-950"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.3 }}
       transition={{ duration: 1, ease: "easeOut" }}
     >
-      {/* Starry Background */}
-      <StarsBackground />
-
       {/* Left Side - Text Content */}
       <div className="sm:w-1/2 text-center sm:text-left z-10">
         <motion.div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 flex flex-wrap justify-center sm:justify-start">
@@ -49,7 +45,7 @@ const Hero = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         >
-          Web Developer | Frontend Enthusiast
+          Web Developer | Full Stack developer Enthusiast
         </motion.p>
         <motion.p
           className="text-sm sm:text-base md:text-lg mb-4 sm:mb-6 opacity-80"
@@ -58,7 +54,7 @@ const Hero = () => {
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.4 }}
         >
-          Passionate about building interactive and dynamic web experiences with modern technologies like React.js, Tailwind CSS, and more.
+          Combining creativity and cutting-edge functionality to develop intuitive, user-centric digital solutions that enhance engagement and deliver seamless experiences.
         </motion.p>
 
         {/* Social Links */}

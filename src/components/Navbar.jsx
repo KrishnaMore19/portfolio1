@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
-import StarsBackground from "./StarsBackground"; // Starry background component
 
 const Navbar = ({ activeSection, setActiveSection }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,13 +39,11 @@ const Navbar = ({ activeSection, setActiveSection }) => {
 
   return (
     <motion.nav
-      className="fixed top-0 left-0 w-full z-50 bg-transparent backdrop-blur-lg shadow-lg"
+      className="fixed top-0 left-0 w-full z-50 bg-indigo-950 backdrop-blur-lg shadow-lg"
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <StarsBackground /> {/* Starry effect in background */}
-
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 relative z-10">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}

@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from "react-icons/fa";
-import StarsBackground from "./StarsBackground";
 import emailjs from "@emailjs/browser";
 
 const contactVariants = {
@@ -46,8 +45,7 @@ const Contact = () => {
   ];
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-black via-gray-900 to-black py-20">
-      <StarsBackground />
+    <section className="relative min-h-screen bg-indigo-950 py-20">
       <div className="relative container mx-auto px-4">
         
         <motion.div 
