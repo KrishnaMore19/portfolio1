@@ -45,7 +45,7 @@ const Hero = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         >
-          Web Developer | Full Stack developer Enthusiast
+          Full Stack Developer | DevOps Engineer
         </motion.p>
         <motion.p
           className="text-sm sm:text-base md:text-lg mb-4 sm:mb-6 opacity-80"
@@ -54,7 +54,8 @@ const Hero = () => {
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.4 }}
         >
-          Combining creativity and cutting-edge functionality to develop intuitive, user-centric digital solutions that enhance engagement and deliver seamless experiences.
+         Passionate about building scalable web applications and automating cloud infrastructure.  
+I blend development and operations to deliver robust, efficient, and user-friendly digital solutions.
         </motion.p>
 
         {/* Social Links */}
