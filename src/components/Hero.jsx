@@ -92,8 +92,8 @@ I blend development and operations to deliver robust, efficient, and user-friend
 
           {/* Download Resume Button */}
           <motion.a
-            href="/resume_krishna.pdf"
-            download="Krishna_More_Resume.pdf"
+            href="/resume(f1).pdf"
+            download="resume(f1).pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-purple-500 hover:bg-purple-700 text-white py-2 sm:py-3 px-5 sm:px-6 rounded-lg text-base sm:text-lg font-medium inline-block shadow-lg"
